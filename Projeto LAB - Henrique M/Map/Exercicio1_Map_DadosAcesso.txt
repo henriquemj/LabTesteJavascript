@@ -1,0 +1,92 @@
+id;nome;dataAcesso
+1;Adriana;2025-12-01
+1;Adriana;2025-12-01
+2;Marcos;2025-12-02
+1;Adriana;2025-12-02
+1;Adriana;2025-12-02
+2;Marcos;2025-12-02
+3;Roberta;2025-12-03
+1;Adriana;2025-12-03
+4;Fernanda;2025-12-05
+4;Fernanda;2025-12-05
+1;Adriana;2025-12-05
+2;Marcos;2025-12-05
+2;Marcos;2025-12-05
+4;Fernanda;2025-12-05
+2;Marcos;2025-12-05
+2;Marcos;2025-12-05
+4;Fernanda;2025-12-05
+4;Fernanda;2025-12-05
+2;Marcos;2025-12-05
+4;Fernanda;2025-12-06
+2;Marcos;2025-12-06
+1;Adriana;2025-12-06
+2;Marcos;2025-12-06
+3;Roberta;2025-12-06
+2;Marcos;2025-12-06
+1;Adriana;2025-12-06
+2;Marcos;2025-12-06
+3;Roberta;2025-12-06
+2;Marcos;2025-12-06
+1;Adriana;2025-12-06
+
+
+
+Exemplo de saída de dados:
+
+----------------------------
+Array original de acessos (com duplicados):
+Tamanho do Array: 30
+Adriana (ID: 1) - Data de Acesso: 2025-12-01
+Adriana (ID: 1) - Data de Acesso: 2025-12-01
+Marcos (ID: 2) - Data de Acesso: 2025-12-02
+Adriana (ID: 1) - Data de Acesso: 2025-12-02
+Adriana (ID: 1) - Data de Acesso: 2025-12-02
+Marcos (ID: 2) - Data de Acesso: 2025-12-02
+Roberta (ID: 3) - Data de Acesso: 2025-12-03
+Adriana (ID: 1) - Data de Acesso: 2025-12-03
+Fernanda (ID: 4) - Data de Acesso: 2025-12-05
+Fernanda (ID: 4) - Data de Acesso: 2025-12-05
+Adriana (ID: 1) - Data de Acesso: 2025-12-05
+Marcos (ID: 2) - Data de Acesso: 2025-12-05
+Marcos (ID: 2) - Data de Acesso: 2025-12-05
+Fernanda (ID: 4) - Data de Acesso: 2025-12-05
+Marcos (ID: 2) - Data de Acesso: 2025-12-05
+Marcos (ID: 2) - Data de Acesso: 2025-12-05
+Fernanda (ID: 4) - Data de Acesso: 2025-12-05
+Fernanda (ID: 4) - Data de Acesso: 2025-12-05
+Marcos (ID: 2) - Data de Acesso: 2025-12-05
+Fernanda (ID: 4) - Data de Acesso: 2025-12-06
+Marcos (ID: 2) - Data de Acesso: 2025-12-06
+Adriana (ID: 1) - Data de Acesso: 2025-12-06
+Marcos (ID: 2) - Data de Acesso: 2025-12-06
+Roberta (ID: 3) - Data de Acesso: 2025-12-06
+Marcos (ID: 2) - Data de Acesso: 2025-12-06
+Adriana (ID: 1) - Data de Acesso: 2025-12-06
+Marcos (ID: 2) - Data de Acesso: 2025-12-06
+Roberta (ID: 3) - Data de Acesso: 2025-12-06
+Marcos (ID: 2) - Data de Acesso: 2025-12-06
+Adriana (ID: 1) - Data de Acesso: 2025-12-06
+-----------------------------
+Registrando quantidade de acessos por dia utilizando Map...
+Acessos registrados por dia
+Quantidade total de entradas únicas no Map: 12
+Adriana (ID: 1) - Data de Acesso: 2025-12-01 - Total de Acessos: 2
+Marcos (ID: 2) - Data de Acesso: 2025-12-02 - Total de Acessos: 2
+Adriana (ID: 1) - Data de Acesso: 2025-12-02 - Total de Acessos: 2
+Roberta (ID: 3) - Data de Acesso: 2025-12-03 - Total de Acessos: 1
+Adriana (ID: 1) - Data de Acesso: 2025-12-03 - Total de Acessos: 1
+Fernanda (ID: 4) - Data de Acesso: 2025-12-05 - Total de Acessos: 5
+Adriana (ID: 1) - Data de Acesso: 2025-12-05 - Total de Acessos: 1
+Marcos (ID: 2) - Data de Acesso: 2025-12-05 - Total de Acessos: 5
+Fernanda (ID: 4) - Data de Acesso: 2025-12-06 - Total de Acessos: 1
+Marcos (ID: 2) - Data de Acesso: 2025-12-06 - Total de Acessos: 5
+Adriana (ID: 1) - Data de Acesso: 2025-12-06 - Total de Acessos: 3
+Roberta (ID: 3) - Data de Acesso: 2025-12-06 - Total de Acessos: 2
+-----------------------------
+Ranking de acesso dos usuários por total de acessos:
+1º Lugar: Marcos (ID: 2) - Total de Acessos: 12
+2º Lugar: Adriana (ID: 1) - Total de Acessos: 9
+3º Lugar: Fernanda (ID: 4) - Total de Acessos: 6
+4º Lugar: Roberta (ID: 3) - Total de Acessos: 3
+-----------------------------

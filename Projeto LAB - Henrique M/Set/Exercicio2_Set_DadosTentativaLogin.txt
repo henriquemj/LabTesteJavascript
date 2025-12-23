@@ -1,0 +1,45 @@
+id;nome;email;acao
+1;Ana Clara Souza;anaclara@example.com;login
+2;Bruno Silva;bruno@example.com;login
+1;Ana Clara Souza;anaclara@example.com;login
+3;Carla Andrade;carla@example.com;logout
+2;Bruno Silva;bruno@example.com;logout
+2;Bruno Silva;bruno@example.com;logout
+4;Diego Rezende;diegorezende@example.com;login
+3;Carla Andrade;carla@example.com;login
+5;Ana Beatriz Nogueira;anabeatriz@example.com;login
+4;Diego Rezende;diegorezende@example.com;login
+5;Ana Beatriz Nogueira;anabeatriz@example.com;login
+6;Bianca Ferreira;biancaferreira@example.com;login
+7;Paulo Lima;paulolima@example.com;login
+1;Ana Clara Souza;anaclara@example.com;login
+6;Bianca Ferreira;biancaferreira@example.com;logout
+
+
+
+Exemplo de saída de dados:
+
+LOGIN: Usuário logado -> ID: 1, Nome: Ana Clara Souza, Email: anaclara@example.com
+LOGIN: Usuário logado -> ID: 2, Nome: Bruno Silva, Email: bruno@example.com
+LOGIN IGNORADO: Usuário ID 1 já está logado.
+LOGOUT IGNORADO: Usuário ID 3 não está logado.
+LOGOUT: Usuário deslogado -> ID: 2, Nome: Bruno Silva
+LOGOUT IGNORADO: Usuário ID 2 não está logado.
+LOGIN: Usuário logado -> ID: 4, Nome: Diego Rezende, Email: diegorezende@example.com
+LOGIN: Usuário logado -> ID: 3, Nome: Carla Andrade, Email: carla@example.com
+LOGIN: Usuário logado -> ID: 5, Nome: Ana Beatriz Nogueira, Email: anabeatriz@example.com
+LOGIN IGNORADO: Usuário ID 4 já está logado.
+LOGIN IGNORADO: Usuário ID 5 já está logado.
+LOGIN: Usuário logado -> ID: 6, Nome: Bianca Ferreira, Email: biancaferreira@example.com
+LOGIN: Usuário logado -> ID: 7, Nome: Paulo Lima, Email: paulolima@example.com
+LOGIN IGNORADO: Usuário ID 1 já está logado.
+LOGOUT: Usuário deslogado -> ID: 6, Nome: Bianca Ferreira
+
+=== Usuários logados ordenados por nome ===
+- ID: 5, Nome: Ana Beatriz Nogueira, Email: anabeatriz@example.com
+- ID: 1, Nome: Ana Clara Souza, Email: anaclara@example.com
+- ID: 3, Nome: Carla Andrade, Email: carla@example.com
+- ID: 4, Nome: Diego Rezende, Email: diegorezende@example.com
+- ID: 7, Nome: Paulo Lima, Email: paulolima@example.com
+
+Total de usuários logados no momento: 5
