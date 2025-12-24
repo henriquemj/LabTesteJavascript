@@ -56,8 +56,8 @@ function Pessoa(tipo) {
     this.cpf = GeradorCPF.gerar();
   } else {
     this.cnpj = GeradorCNPJ.gerar();
-    this.nome = 'Empresa ' + this.cnpj;
-    this.email = 'falecom@empresa.com.br';
+    this.nome = 'Empresa Test Money ' + this.cnpj;
+    this.email = 'empresatestmoney@empresa.com';
   }
 }
 
@@ -69,7 +69,7 @@ function imprimir(pessoa) {
   console.log('------------------------');
 }
 
-// Gerar lista
+// Função de Gerar lista
 function gerarLista(qtdFisicas, qtdJuridicas) {
   for (let i = 0; i < qtdFisicas; i++) imprimir(new Pessoa('fisica'));
   for (let j = 0; j < qtdJuridicas; j++) imprimir(new Pessoa('juridica'));
