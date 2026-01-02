@@ -1,10 +1,8 @@
-// Exercício 3 LAB Testes Java Script – Utilização de Herança e Métodos Estáticos
-
+// Utilitários
 const nomes = ['Jonas Silva', 'Maria Oliveira', 'Carlos Santos', 'Ana Costa',
   'Pedro Almeida', 'Mariana Ribeiro', 'Lucas Ferreira', 'Beatriz Gomes',
   'Rafael Dias', 'Juliana Martins', 'Felipe Souza', 'Camila Dantas'];
 
-// Fiz dessa forma pra garantir que o Array sempre vai vir com o nome correto da cidade e do estado
 const localizacoes = [
   { cidade: 'São Paulo', estado: 'SP' }, 
   { cidade: 'Rio de Janeiro', estado: 'RJ' },
@@ -35,45 +33,91 @@ const localizacoes = [
   { cidade: 'Manaus', estado: 'AM' }
 ];
 
-// Utilitários
 const randomFromArray = arr => arr[Math.floor(Math.random() * arr.length)];
-const randomNumber = len => Array.from({length: len}, () => Math.floor(Math.random() * 10)).join('');
+const randomNumber = len => Array.from({ length: len }, () => Math.floor(Math.random() * 10)).join('');
 
-// Geradores simplificados
-const GeradorCPF = { gerar: () => randomNumber(11) };
-const GeradorCNPJ = { gerar: () => randomNumber(14) };
+// Gerador CPF válido
+function GeradorCPF() {}
+GeradorCPF.gerar = function () {
+  const base = Array.from({ length: 9 }, () => Math.floor(Math.random() * 10));
+  const dig1 = calcularDV(base, [10,9,8,7,6,5,4,3,2]);
+  const dig2 = calcularDV([...base, dig1], [11,10,9,8,7,6,5,4,3,2]);
+  return [...base, dig1, dig2].join('');
+};
 
-// Classe base
-function Pessoa(tipo) {
+function calcularDV(digitos, pesos) {
+  const soma = digitos.reduce((acc, d, i) => acc + d * pesos[i], 0);
+  const resto = soma % 11;
+  return resto < 2 ? 0 : 11 - resto;
+}
+
+// Gerador CNPJ válido
+function GeradorCNPJ() {}
+GeradorCNPJ.gerar = function () {
+  const base = Array.from({ length: 12 }, () => Math.floor(Math.random() * 10));
+  const dig1 = calcularDV(base, [5,4,3,2,9,8,7,6,5,4,3,2]);
+  const dig2 = calcularDV([...base, dig1], [6,5,4,3,2,9,8,7,6,5,4,3,2]);
+  return [...base, dig1, dig2].join('');
+};
+
+// Função construtora base
+function Pessoa(nome, email, cidade, estado) {
+  // this.id = id;
+  this.nome = nome;
+  this.email = email;
+  this.cidade = cidade;
+  this.estado = estado;
+}
+
+Pessoa.prototype.getResumo = function () {
+  // return `Id: ${this.id}\nNome: ${this.nome}\nContato: (${this.email}) - ${this.cidade}/${this.estado}`;
+  return `Nome: ${this.nome} \nContato: (${this.email}) - ${this.cidade}/${this.estado}`;
+};
+
+// Pessoa Física
+function PessoaFisica() {
   const local = randomFromArray(localizacoes);
-  this.id = randomNumber(5);
-  this.cidade = local.cidade;
-  this.estado = local.estado;
-
-  if (tipo === 'fisica') {
-    this.nome = randomFromArray(nomes);
-    this.email = this.nome.toLowerCase().replace(/ /g, '.') + '@gmail.com';
-    this.cpf = GeradorCPF.gerar();
-  } else {
-    this.cnpj = GeradorCNPJ.gerar();
-    this.nome = 'Empresa Test Money ' + this.cnpj;
-    this.email = 'empresatestmoney@empresa.com';
-  }
+  const nome = randomFromArray(nomes);
+  const email = nome.toLowerCase().replace(/ /g, '.') + '@gmail.com';
+  const id = randomNumber(5);
+  Pessoa.call(this, nome, email, local.cidade, local.estado);
+  this.cpf = GeradorCPF.gerar();
 }
 
-// Impressão dos dados no console
-function imprimir(pessoa) {
-  console.log(`Nome: ${pessoa.nome} - contato: (${pessoa.email}) - ${pessoa.cidade}/${pessoa.estado}`);
-  if (pessoa.cpf) console.log(`CPF: ${pessoa.cpf}`);
-  if (pessoa.cnpj) console.log(`CNPJ: ${pessoa.cnpj}`);
+PessoaFisica.prototype = Object.create(Pessoa.prototype);
+PessoaFisica.prototype.constructor = PessoaFisica;
+
+PessoaFisica.prototype.imprimir = function () {
+  console.log(this.getResumo());
+  console.log(`CPF: ${this.cpf}`);
   console.log('------------------------');
+};
+
+// Pessoa Jurídica
+function PessoaJuridica() {
+  const local = randomFromArray(localizacoes);
+  const cnpj = GeradorCNPJ.gerar();
+  const nome = 'Empresa Test Money ' + cnpj;
+  const email = 'empresatestmoney@empresa.com';
+  const id = randomNumber(5);
+  Pessoa.call(this, nome, email, local.cidade, local.estado);
+  this.cnpj = cnpj;
 }
 
-// Função de Gerar lista
+PessoaJuridica.prototype = Object.create(Pessoa.prototype);
+PessoaJuridica.prototype.constructor = PessoaJuridica;
+
+PessoaJuridica.prototype.imprimir = function () {
+  console.log(this.getResumo());
+  console.log(`CNPJ: ${this.cnpj}`);
+  console.log('------------------------');
+};
+
+// Gerar lista
 function gerarLista(qtdFisicas, qtdJuridicas) {
-  for (let i = 0; i < qtdFisicas; i++) imprimir(new Pessoa('fisica'));
-  for (let j = 0; j < qtdJuridicas; j++) imprimir(new Pessoa('juridica'));
+  for (let i = 0; i < qtdFisicas; i++) new PessoaFisica().imprimir();
+  for (let j = 0; j < qtdJuridicas; j++) new PessoaJuridica().imprimir();
 }
 
-// Gera uma lista com 3 dados de pessoas físicas e 3 de pessoa juridica
+// Teste
 gerarLista(3, 3);
